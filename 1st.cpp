@@ -50,3 +50,73 @@ void blink2(int pin)
   delay(1000);
 }
 
+//아두이노 보드와 통신하기
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  Serial.println(analogRead(0));
+  delay(100);
+}
+
+//특정 문자를 입력해 LED 제어하기
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(13, OUTPUT)
+}
+
+void loop()
+{
+  if(Serial.available()){
+    String input = Serial.readString();
+    if(input == "a"){
+      digitalWrite(13, HIGH);
+    }
+    if(input == "d"){
+      digitalWrite(13, LOW);
+    }
+  }
+}
+
+//LED 한 개 제어하기
+void setup()
+{
+  pinMode(13, OUTPUT);
+}
+
+void loop()
+{
+   digitalWrite(13,HIGH);
+  delay(1000);
+  digitalWrite(13, LOW);
+  delay(1000);
+}
+
+//LED  3개 제어하기
+void setup()
+{
+  pinMode(13, OUTPUT);
+  pinMode(12, OUTPUT);
+  pinMode(11, OUTPUT);
+}
+
+void loop()
+{
+   digitalWrite(13,HIGH);
+  delay(1000);
+  digitalWrite(13, LOW);
+  delay(1000);
+     digitalWrite(12, HIGH);
+  delay(1000);
+  digitalWrite(12, LOW);
+  delay(1000);
+     digitalWrite(11,HIGH);
+  delay(1000);
+  digitalWrite(11, LOW);
+  delay(1000);
+}
+
