@@ -43,7 +43,7 @@ void loop() {
 // 스위치로 스텝모터 회전하기
 #include <Stepper.h>
 int stepsPerRev = 2048; 
-Stepper stepper(stepsPerRev, 11, 9, 10, 8) // IN4, IN2, IN3, IN1
+Stepper stepper(stepsPerRev, 11, 9, 10, 8); // IN4, IN2, IN3, IN1
 int btn1 = 7;
 int btn2 = 6;
 
@@ -60,6 +60,6 @@ void loop() {
      stepper.step(1);  // 시계 방향 회전
   }
    if (btn2HL == LOW){   // 2번 스위치의 입력
-     stepper.step(-1)   // 반시계 방향 회전
+     stepper.step(-1);   // 반시계 방향 회전
   }
 }
