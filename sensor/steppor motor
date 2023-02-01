@@ -1,0 +1,65 @@
+// 스텝모터 한 바퀴 돌리기-1
+#include <Stepper.h>
+const int stepsPerRevolution = 2048; 
+// 2048 → 한 바퀴(360도), 1024 → 반 바퀴(180도) …
+Stepper myStepper(stepsPerRevolution,11,9,10,8);   
+// 모터 드라이브에 연결된 핀 IN4, IN2, IN3, IN1
+        
+void setup() {
+  myStepper.setSpeed(14); 
+}
+
+void loop() {
+  myStepper.step(stepsPerRevolution);   // 시계 반대 방향으로 한 바퀴 회전
+  delay(500);
+  myStepper.step(-stepsPerRevolution);  // 시계 방향으로 한바퀴 회전
+  delay(500);
+}
+
+
+// 스텝 모터 한 바퀴 돌리기-2
+#include <Stepper.h>
+const int stepsPerRevolution = 64; 
+Stepper myStepper(stepsPerRevolution, 11,9,10,8); 
+
+void setup() {
+  myStepper.setSpeed(300);
+}
+
+void loop() {  
+  // 시계 반대 방향으로 한 바퀴 회전
+  for(int i=0; i<32; i++) {  // 64*32 = 2048, 한 바퀴
+    myStepper.step(stepsPerRevolution);
+  }
+  delay(500);
+  // 시계 방향으로 한 바퀴 회전
+  for(int i=0; i<32; i++) {
+    myStepper.step(-stepsPerRevolution);
+  }
+  delay(500);
+}
+
+
+// 스위치로 스텝모터 회전하기
+#include <Stepper.h>
+int stepsPerRev = 2048; 
+Stepper stepper(stepsPerRev, 11, 9, 10, 8) // IN4, IN2, IN3, IN1
+int btn1 = 7;
+int btn2 = 6;
+
+void setup() {
+   stepper.setSpeed(10);  // 스텝 모터의 스피드
+   pinMode(btn1, INPUT_PULLUP);
+   pinMode(btn2, INPUT_PULLUP);
+}
+
+void loop() {
+   boolean btn1HL = digitalRead(btn1);
+   boolean btn2HL = digitalRead(btn2);
+   if (btn1HL == LOW) {  // 1번 스위치의 입력
+     stepper.step(1);  // 시계 방향 회전
+  }
+   if (btn2HL == LOW){   // 2번 스위치의 입력
+     stepper.step(-1)   // 반시계 방향 회전
+  }
+}
